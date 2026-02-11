@@ -42,14 +42,5 @@ jobs:
             --region asia-south1 \
             --platform managed \
             --allow-unauthenticated \
-            --set-env-vars \
-              DB_HOST=${{ secrets.DB_HOST }},\
-              DB_PORT=${{ secrets.DB_PORT }},\
-              DB_NAME=${{ secrets.DB_NAME }},\
-              DB_USER=${{ secrets.DB_USER }},\
-              DB_PASSWORD=${{ secrets.DB_PASSWORD }},\
-              VAPI_API_KEY=${{ secrets.VAPI_API_KEY }},\
-              VAPI_WEBHOOK_URL=${{ secrets.VAPI_WEBHOOK_URL }},\
-              VAPI_WEBHOOK_SECRET=${{ secrets.VAPI_WEBHOOK_SECRET }},\
-              DJANGO_SECRET_KEY=prod-secret \
+            --set-env-vars "DB_HOST=${{ secrets.DB_HOST }},DB_PORT=${{ secrets.DB_PORT }},DB_NAME=${{ secrets.DB_NAME }},DB_USER=${{ secrets.DB_USER }},DB_PASSWORD=${{ secrets.DB_PASSWORD }},VAPI_API_KEY=${{ secrets.VAPI_API_KEY }},VAPI_WEBHOOK_URL=${{ secrets.VAPI_WEBHOOK_URL }},VAPI_WEBHOOK_SECRET=${{ secrets.VAPI_WEBHOOK_SECRET }},DJANGO_SECRET_KEY=prod-secret" \
             --quiet
