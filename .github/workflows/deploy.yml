@@ -42,14 +42,5 @@ jobs:
             --region asia-south1 \
             --platform managed \
             --allow-unauthenticated \
-            --set-secrets \
-              DB_HOST=DB_HOST:latest,\
-              DB_PORT=DB_PORT:latest,\
-              DB_NAME=DB_NAME:latest,\
-              DB_USER=DB_USER:latest,\
-              DB_PASSWORD=DB_PASSWORD:latest,\
-              VAPI_API_KEY=VAPI_API_KEY:latest,\
-              VAPI_WEBHOOK_URL=VAPI_WEBHOOK_URL:latest,\
-              VAPI_WEBHOOK_SECRET=VAPI_WEBHOOK_SECRET:latest,\
-              DJANGO_SECRET_KEY=DJANGO_SECRET_KEY:latest \
+            --set-secrets "DB_HOST=DB_HOST:latest,DB_PORT=DB_PORT:latest,DB_NAME=DB_NAME:latest,DB_USER=DB_USER:latest,DB_PASSWORD=DB_PASSWORD:latest,VAPI_API_KEY=VAPI_API_KEY:latest,VAPI_WEBHOOK_URL=VAPI_WEBHOOK_URL:latest,VAPI_WEBHOOK_SECRET=VAPI_WEBHOOK_SECRET:latest,DJANGO_SECRET_KEY=DJANGO_SECRET_KEY:latest" \
             --quiet
