@@ -1,6 +1,6 @@
 BoostedCalls
 -------------
-BoostedCalls is a Django 5.x backend that integrates with a telephony provider (Vapi) to create, manage and analyze outbound calls. It exposes a REST API (Django REST Framework) for calls, contacts, and call scripts, receives webhooks from Vapi to keep call state in sync, and supports background sync of stale queued calls.
+BoostedCalls is a Django 5.x backend that integrates with a Voice AI Provider (Vapi) to create, manage and analyze outbound calls. It exposes a REST API (Django REST Framework) for calls, contacts, and call scripts, receives webhooks from Vapi to keep call state in sync, and supports background sync of stale queued calls.
 
 Prerequisites
 -------------
