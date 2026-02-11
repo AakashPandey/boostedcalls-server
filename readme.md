@@ -125,6 +125,35 @@ Production notes
 ----------------
 - Store secrets in Secret Manager and reference them in Cloud Run instead of embedding as plain env vars.
 
+```bash
+gcloud services enable secretmanager.googleapis.com
+
+echo -n "aws-1-ap-south-1.pooler.supabase.com" | gcloud secrets create DB_HOST --data-file=-
+echo -n "5432" | gcloud secrets create DB_PORT --data-file=-
+echo -n "postgres" | gcloud secrets create DB_NAME --data-file=-
+echo -n "postgres.yourprojectref" | gcloud secrets create DB_USER --data-file=-
+echo -n "YOUR_DB_PASSWORD" | gcloud secrets create DB_PASSWORD --data-file=-
+echo -n "YOUR_VAPI_API_KEY" | gcloud secrets create VAPI_API_KEY --data-file=-
+echo -n "https://your-host/api/calls/webhook/" | gcloud secrets create VAPI_WEBHOOK_URL --data-file=-
+echo -n "YOUR_VAPI_WEBHOOK_SECRET" | gcloud secrets create VAPI_WEBHOOK_SECRET --data-file=-
+echo -n "your-production-secret-key" | gcloud secrets create DJANGO_SECRET_KEY --data-file=-
+
+gcloud projects describe boostedcalls --format="value(projectNumber)"
+PROJECT_NUMBER=123456789012
+SERVICE_ACCOUNT=${PROJECT_NUMBER}-compute@developer.gserviceaccount.com
+
+
+```
+
+### run this for each secret
+```bash
+gcloud secrets add-iam-policy-binding DB_HOST \
+  --member="serviceAccount:${SERVICE_ACCOUNT}" \
+  --role="roles/secretmanager.secretAccessor"
+
+```
+
+
 
 Useful commands
 ---------------
@@ -176,14 +205,7 @@ Add these secrets to your GitHub repo (Settings → Secrets) so CI/CD can deploy
 |--------|-------|
 | GCP_PROJECT_ID | your project id |
 | GCP_SA_KEY | full contents of key.json (JSON string) |
-| DB_HOST | aws-1-ap-south-1.pooler.supabase.com |
-| DB_PORT | 5432 |
-| DB_NAME | postgres |
-| DB_USER | postgres.yourprojectref |
-| DB_PASSWORD | your password |
-| VAPI_API_KEY | vapi API key value |
-| VAPI_WEBHOOK_URL | https://your-host/api/calls/webhook/ |
-| VAPI_WEBHOOK_SECRET | webhook secret value |
+
 
 Security notes
 --------------
